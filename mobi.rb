@@ -6,7 +6,7 @@ require "fileutils"
 require "eeepub"
 
 KINDLEGEN_CMD="/usr/local/src/kindlegen/kindlegen"
-BOOK_NAME = "Thuong_Tien"
+BOOK_NAME = "TU_TIEN"
 
 def getChapterContent(chapter_file)
     #doc = open(chapter_file) { |f| Hpricot(f) }
@@ -42,8 +42,9 @@ end
 def driver
     file_list = Array.new
     book_toc = Array.new
-    Dir.foreach "tmp" do |file|
-        puts file
+    files = Dir['tmp/*'].sort_by {|f| File.mtime(f)}
+    files.each do |f|
+        file = File.basename(f)
         if file != '.' and file != '..'
             regenChapterWithIDTag File.join("tmp", file)
             file_list << "tmp/" + file
@@ -80,5 +81,5 @@ end
 def gen_book
     exec KINDLEGEN_CMD + " -c1 #{BOOK_NAME}.epub -o #{BOOK_NAME}.mobi"
 end
-#driver
-#gen_book
+driver
+gen_book

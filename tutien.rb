@@ -3,7 +3,7 @@ require "hpricot"
 require "fileutils"
 require "eeepub"
 
-URL="http://tunghoanh.com/thuong-thien-neaaaab.html"
+URL="http://tunghoanh.com/pham-nhan-tu-tien-Xdaaaab.html"
 CHAPTER_URL="http://tunghoanh.com/chapter/"
 KINDLEGEN_CMD="/usr/local/src/kindlegen/kindlegen"
 
@@ -44,6 +44,7 @@ def wgetChapterContent()
         #puts real_link
         site_content = http_client.get_content(real_link, :follow_redirect => true).force_encoding("UTF-8")
         # save it to file
+        puts chapter_id
         fhandle = File.open "tmp/" + chapter_id[0..-14] + '.html', 'w'
         fhandle.write "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />#{site_content}</body></html>"
         fhandle.close()
@@ -51,7 +52,8 @@ def wgetChapterContent()
 end
 
 def getChapterID(url)
-    return url[34..-1]
+    #puts url
+    return File.basename url[34..-1]
 end
 
 wgetChapterContent
