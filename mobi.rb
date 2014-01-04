@@ -6,7 +6,7 @@ require "fileutils"
 require "eeepub"
 
 KINDLEGEN_CMD="/usr/local/src/kindlegen/kindlegen"
-BOOK_NAME = "TU_TIEN"
+BOOK_NAME = "Pham-Nhan-Tu-Tien"
 
 def getChapterContent(chapter_file)
     #doc = open(chapter_file) { |f| Hpricot(f) }
@@ -43,7 +43,7 @@ def driver
     file_list = Array.new
     book_toc = Array.new
     files = Dir['tmp/*'].sort_by {|f| File.mtime(f)}
-    files.each do |f|
+    files.reverse.each do |f|
         file = File.basename(f)
         if file != '.' and file != '..'
             regenChapterWithIDTag File.join("tmp", file)

@@ -1,16 +1,16 @@
 require 'httpclient'
 require 'nokogiri'
-require 'eeepub'
-require 'gmail'
+#require 'eeepub'
+#require 'gmail'
 
-KINDLEGEN_CMD = "/usr/local/src/kindlegen/kindlegen"
+#KINDLEGEN_CMD = "/usr/local/src/kindlegen/kindlegen"
 
 PREFIX = 'http://vnthuquan.net/truyen/'
-URL = 'http://vnthuquan.net/truyen/truyen.aspx?tid=2qtqv3m3237n1nmntn1n31n343tq83a3q3m3237nvn'
-BOOK_NAME = 'Cac Vi Nhan Tinh Le'
-AUTHOR = 'Duong Thu Huong'
+URL = 'http://vnthuquan.net/truyen/truyen.aspx?tid=2qtqv3m3237n1nmn2nnn31n343tq83a3q3m3237nvn&AspxAutoDetectCookieSupport=1'
+BOOK_NAME = '1984'
+AUTHOR = 'Geogre Orwell'
 PUBLISHER = 'vnthuquan.net'
-FILE_NAME = 'Cac-Vi-Nhan-Tinh-Le'
+FILE_NAME = 'Geogre Orwell'
 
 DELIMITER = '--!!tach_noi_dung!!--'
 
@@ -57,6 +57,7 @@ res.each do |link|
     end
 end
 
+=begin
 #puts chap_files
 book = EeePub.make do
     title BOOK_NAME
@@ -87,3 +88,4 @@ Gmail.new(EMAIL, PWD) do |gmail|
         add_file "#{FILE_NAME}.mobi"
     end
 end
+=end
